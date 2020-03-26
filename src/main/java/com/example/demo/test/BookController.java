@@ -14,6 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BookController {
 
+	/**
+	 * http://localhost:8080/book
+	 *
+	 * {
+	 * 		"bookAggregateRootStatusEnum": 0
+	 * }
+	 *
+	 */
 	@PostMapping("book")
 	public void create(@RequestBody BookPowerEntity bookAggregateRoot) {
 		System.out.println(bookAggregateRoot);

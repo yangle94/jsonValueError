@@ -2,6 +2,7 @@ package com.example.demo.test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,14 @@ public class BookController {
 		String json = "{\n" +
 				"\"bookAggregateRootStatusEnum\":0\n" +
 				"}";
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.readValue(json, BookPowerEntity.class);
+
+		//success
+		ObjectMapper objectMapper2 = new ObjectMapper();
+		objectMapper2.readValue(json, BookPowerEntity2.class);
+
+		//fail
+		ObjectMapper objectMapper1 = new ObjectMapper();
+		objectMapper1.registerModule(new ParameterNamesModule());
+		objectMapper1.readValue(json, BookPowerEntity.class);
 	}
 }
